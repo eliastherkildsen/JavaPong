@@ -4,36 +4,48 @@ import com.example.pong.model.Ball;
 import com.example.pong.model.Paddle;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import static com.example.pong.utill.Draw.*;
-
+import static com.example.pong.utill.Draw.draw;
 
 public class Controller {
 
-    Paddle paddle = new Paddle(50,50,2,2);
-    Ball ball = new Ball(300,400,10,10);
-
+    private Ball ball;
+    private Paddle paddle;
     @FXML
-    Canvas canvas;
-
+    private Canvas canvas;
     @FXML
-    protected void handleButton(){
+    protected void handleButton() {
         // setup
+        setup();
+    }
 
-        // draw ball
-        drawOver(ball, canvas);
-        ball.setVelocity(20);
+    public void setup() {
 
-        ball.setxPos(ball.getxPos() + ball.getVelocity());
-        ball.setyPos(ball.getyPos() + ball.getVelocity());
+        // creating ball obj.
+        ball = new Ball(0, 0, 15, 15);
 
+        // creating paddle obj.
+        paddle = new Paddle(200, 150, 30, 400);
+
+        // drawing ball.
         draw(ball, canvas);
 
+        // drawing paddle.
+        draw(paddle, canvas);
 
+        Application.running = true;
     }
 
-    public static void key(){
-        System.out.println("Key Pressed: " + Application.keyText);
+    public void moveLeft() {
+        paddle.moveLeft(canvas);
     }
 
+    public void moveRight() {
+        paddle.moveRight(canvas);
+    }
+
+    public void moveBall(){
+
+        ball.updatePos(canvas);
+    }
 
 }

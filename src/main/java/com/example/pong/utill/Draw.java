@@ -19,7 +19,7 @@ public class Draw {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUEVIOLET);
-        gc.fillRect(x,y,w,h);
+        gc.fillRect(x,y,h,w);
 
 
     }
@@ -32,7 +32,7 @@ public class Draw {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUEVIOLET);
-        gc.fillOval(x,y,w,h);
+        gc.fillOval(x,y,h,w);
 
     }
 
@@ -45,7 +45,7 @@ public class Draw {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.WHITE);
-        gc.clearRect(x,y,w,h);
+        gc.clearRect(x,y,h,w);
 
     }
 
@@ -58,7 +58,7 @@ public class Draw {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUEVIOLET);
-        gc.clearRect(x,y,w,h);
+        gc.clearRect(x,y,h,w);
 
     }
 
