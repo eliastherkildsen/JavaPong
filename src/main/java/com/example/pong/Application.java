@@ -11,7 +11,7 @@ public class Application extends javafx.application.Application {
 
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 800;
-    public int gameFrame = 0;
+    public static int gameFrame = 0;
     private final long TARGET_NANOSECONDS_PER_FRAME = 1000000000 / 20; // 10 frames per second
     private long lastUpdateTime = 0;
     public static boolean running = false;
@@ -60,18 +60,25 @@ public class Application extends javafx.application.Application {
     private void update() {
         // frame counter
         gameFrame++;
-        System.out.printf("Frame: %d  \r", gameFrame);
+
+
+
         if (running) {
-            controller.moveBall();
+            controller.moveBall(controller.collison());
+            controller.debug();
+
+
+
+        } else if (!running) {
+            controller.setup();
         }
 
 
     }
 
+
     // Handle key press events
     private void handleKeyPress(KeyCode code) {
-        System.out.printf("Key Pressed \r" + code);
-        // Add your key press logic here
 
         if (code == KeyCode.A) {
             // Call the moveLeft method on the Controller instance
@@ -81,11 +88,15 @@ public class Application extends javafx.application.Application {
         if (code == KeyCode.D) {
             // Call the moveLeft method on the Controller instance
             controller.moveRight();
+
         }
     }
 
     public static void main(String[] args) {
         launch();
     }
+
+
+
 }
 

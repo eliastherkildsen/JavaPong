@@ -10,13 +10,11 @@ public class Controller {
 
     private Ball ball;
     private Paddle paddle;
+
     @FXML
     private Canvas canvas;
-    @FXML
-    protected void handleButton() {
-        // setup
-        setup();
-    }
+
+    public static int scorre = 0;
 
     public void setup() {
 
@@ -24,7 +22,7 @@ public class Controller {
         ball = new Ball(0, 0, 15, 15);
 
         // creating paddle obj.
-        paddle = new Paddle(200, 150, 30, 400);
+        paddle = new Paddle(100, 15, 0, 400);
 
         // drawing ball.
         draw(ball, canvas);
@@ -43,9 +41,23 @@ public class Controller {
         paddle.moveRight(canvas);
     }
 
-    public void moveBall(){
+    public void moveBall(boolean collison){
+        ball.updatePos(canvas, collison);
+        if (collison){
+            scorre++;
+        }
+    }
 
-        ball.updatePos(canvas);
+    public boolean collison(){
+        return ball.checkCollison(paddle);
+    }
+
+    public void debug(){
+
+        System.out.printf("[BALL]   X %d - Y %d - V(x) %d - V(y) %d  [PADDLE]   X %d - Y %d [GAMEFRAME] %d [SCORE] %d\r", ball.getxPos(), ball.getyPos(),
+                ball.getVelocityX(), ball.getVelocityY(), paddle.getxPos(), paddle.getyPos(), Application.gameFrame, scorre);
+
+
     }
 
 }

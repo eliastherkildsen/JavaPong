@@ -28,16 +28,18 @@ public class Paddle {
             setxPos(this.getxPos() + velocity);
             draw(this, canvas);
 
+
         }
 
     }
     public void moveLeft(Canvas canvas){
         // checks if player is on screen.
-        if (this.getxPos() > 0) {
+        if (this.getxPos() >= 0) {
 
             drawOver(this, canvas);
             setxPos(this.getxPos() - velocity);
             draw(this, canvas);
+
 
         }
 
